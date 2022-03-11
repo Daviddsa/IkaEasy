@@ -1,0 +1,32 @@
+<div class="empire-tooltip">
+    <div class="empire-tooltip-title">
+        <%= LANGUAGE.getLocalizedString('empire.research_title') %>
+    </div>
+
+    <div class="empire-tooltip-content">
+        <div class="empire-tooltip-content-values">
+            <span><%= num(Math.floor(data.city.getResearch()), 0, false) %></span>
+            <%= LANGUAGE.getLocalizedString('empire.research_title') %>:
+        </div>
+
+        <div class="empire-tooltip-content-values">
+            <span><%= num(Math.floor(data.city.get('scientists')), 0, false) %></span>
+            <%= LANGUAGE.getLocalizedString('empire.research_scientist') %>:
+        </div>
+
+        <div class="empire-tooltip-content-values">
+            <span><%= num(Math.floor(data.city.getResearchMultiplier() * 100 - 100), 0, false) %>%</span>
+            <%= LANGUAGE.getLocalizedString('empire.research_research') %>:
+        </div>
+
+        <div class="empire-tooltip-content-values">
+            <span><%= num(Math.floor(data.city.getResearchGovernmentMultiplier() * 100), 0, false) %>%</span>
+            <%= LANGUAGE.getLocalizedString('empire.research_government') %>:
+        </div>
+
+        <div class="empire-tooltip-content-values">
+            <span><%= num(-Math.floor(data.city.getCorruption() * 100), 0, false) %>%</span>
+            <%= LANGUAGE.getLocalizedString('empire.research_corruption') %>:
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<%
+    let amount = data.city.resources[data.type];
+    let percent = Math.min(100, amount / data.resInfo.capacity * 100);
+    let safePercent = Math.min(100, data.resInfo.safe / data.resInfo.capacity * 100);
+
+    if (!data.total.resource[data.type]) {
+        data.total.resource[data.type] = {
+            amount: 0,
+            wine_spending: 0,
+            production: 0
+        };
+    }
+
+    data.total.resource[data.type].amount += amount;
+%>
+<td class="empire-resource" data-resource="<%= data.type %>" data-amount="<%= amount %>" data-has-production="<%= typeof data.city.production[data.type] !== 'undefined' %>" data-safe="<%= data.resInfo.safe %>" data-capacity="<%= data.resInfo.capacity%>" data-percent="<%= percent %>" data-production="<%- JSON.stringify(data.city.production) %>">
+    <div class="empire-resource-amount <%= (data.resInfo.safe >= amount) ? 'empire-resource-safe' : 'empire-resource-unsafe' %>">
+        <svg height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#e4b873" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"/></svg>
+        <div><%= num(amount, 0, false) %></div>
+</div>
+
+    <div class="empire-resource-production">
+        <% if (data.type === Resources.WINE) {
+            data.total.resource[data.type].wine_spending += data.city.production[Resources.WINE_SPENDING];
+            let wineLeftTime = Utils.transformHours(Math.abs(data.city.resources[ Resources.WINE ] / data.city.production[Resources.WINE_SPENDING]));
+        %>
+            <div class="empire-resource-production--left red">
+                <%= num(-data.city.production[Resources.WINE_SPENDING]) %>
+            </div>
+            <% if (data.city.production[Resources.WINE_SPENDING] > 0) { %>
+                <div class="empire-resource-production--right">
+                    <div><%= wineLeftTime %></div>
+
+                    <% if (typeof data.city.production[data.type] !== 'undefined') { %>
+                        <div class="green">&nbsp;(<%= num(data.city.production[data.type]) %>)</div>
+                    <% } %>
+                </div>
+            <% } %>
+        <% } %>
+
+        <% if (typeof data.city.production[data.type] !== 'undefined') {
+            data.total.resource[data.type].production += data.city.production[ data.type ];
+            if ((data.type !== Resources.WINE) || (data.city.production[Resources.WINE_SPENDING] === 0)) {
+        %>
+            <div class="green"><%= num(data.city.production[data.type]) %></div>
+        <% }} %>
+    </div>
+
+    <div class="ikaeasy-progressbar">
+        <div style="width: <%= percent %>%;"></div>
+        <!-- <div style="width: <%= Math.min(percent, safePercent) %>%; background: #e4b873;"></div> -->
+    </div>
+</td>

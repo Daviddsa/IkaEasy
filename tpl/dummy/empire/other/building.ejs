@@ -1,0 +1,39 @@
+<%
+    let info = data.parent.buildings[data.building];
+    if (info.cnt) {
+        let b = data.city.getBuildingByType(data.building);
+        if (b) {
+
+            let buildingInfos = data.parent.getBuildingInfo(data.city, data.building, data.discount);
+
+            for(let i = 0; i < info.cnt; i++) {
+                if (buildingInfos[i]) {
+                    let buildingInfo = buildingInfos[i];
+                %>
+                    <td class="center empire-building empire-building-can-hover"
+                    data-can-upgrade="<%= b.canUpgrade %>"
+                    data-data="<%- JSON.stringify(buildingInfo) %>"
+                    data-building="<%= data.building %>"
+                    data-position="<%= buildingInfo.position %>"
+                    data-upgrading="<%= buildingInfo.is_upgrading %>"
+                    data-final="<%= buildingInfo.is_finished %>"
+                    data-resources-enough="<%= buildingInfo.resources_enough %>"
+                    data-url="/index.php?view=<%= buildingInfo.building %>&cityId=<%= data.city.cityId %>&position=<%= buildingInfo.position %>&backgroundView=city&currentCityId=<%= data.city.cityId %>">
+                        <%= buildingInfo.level %>
+                        <% if (buildingInfo.is_upgrading) { %>
+                            <span>&gt; <%= buildingInfo.level + 1 %></span>
+                        <% } %>
+                    </td>
+                <%
+                } else {
+                    print('<td class="center empire-no-building empire-building">&mdash;</td>')
+                }
+            }
+        } else {
+            for(let i = 0; i < info.cnt; i++) {
+                print(`<td class="center empire-no-building empire-building" data-building="${ data.building }">&mdash;</td>`);
+            }
+        }
+    }
+%>
+

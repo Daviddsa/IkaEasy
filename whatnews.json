@@ -1,0 +1,45 @@
+{
+    "version": "3.0.22.94",
+    "enabled": true,
+    "text": {
+        "ru": "Исправлена ошибка, препятствующая работе приложения. Приносим извинения за неудобства пострадавшим пользователям!",
+        "en": "A bug that prevented the application from working was fixed. We apologize for the inconvenience!"
+    },
+    "new": {
+        "ru": [
+            "В шпионаже теперь запоминается введенный уровень хранилищ",
+            "Если в сообщении приложена ссылка на доклад на сайте Ikalogs.ru, вы увидите краткую информацию о нем.",
+            "\"Управление империей\" было переработано для вашего удобства. Убрана ручная синхронизация, а так же сделано много косметических и не только улучшений.",
+            "В \"Управлении империей\" стали учитываться улучшения Премиум-аккаунтов",
+            "Улучшена поддержка арабской версии игры (справа налево)",
+            "На кружке уровня здания появился прогресс бар, по которому видно сколько еще копить до следующего уровня"
+        ],
+        "en": [
+            "We keep warehouse level in a spy report now",
+            "If there is a link to a report from IkaLogs.ru in message -  short report details will be appeared instead of a link",
+            "\"Empire manager\" improvements",
+            "\"Premium\" features are accounted in the \"Empire Manager\".",
+            "RTL version imrovements",
+            "Progress bar added to a circle with building level. You can see how many resources are required to upgrade."
+        ]
+    },
+    "fixed": {
+        "ru": [
+            "Исправлены ошибки",
+            "Исправлен показ скриншотов из clip2net",
+            "Починили маркеры в топ-листе"
+        ],
+        "en": [
+            "Bug fixes and minor improvements",
+            "Fixed showing screenshots from clip2net",
+            "Markers in the highscore was fixed"
+        ]
+    },
+    "hotfix": {
+        "ru": [],
+        "en": []
+    },
+    "options": [
+        "quick_menu"
+    ]
+}
